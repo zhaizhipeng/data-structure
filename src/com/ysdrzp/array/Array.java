@@ -1,22 +1,24 @@
 package com.ysdrzp.array;
 
+import java.util.Objects;
+
 /**
  * 二次封装数组
  * @author 翟志鹏
  */
-public class Array {
+public class Array<E> {
 
     private int size;
 
-    private int[] data;
+    private E[] data;
 
     public Array(int capacity){
-        data = new int[capacity];
+        data = (E[]) new Objects[capacity];
         size = 0;
     }
 
     public Array(){
-        this.data = new int[10];
+        this.data = (E[]) new Objects[10];
     }
 
     /**
@@ -24,9 +26,15 @@ public class Array {
      * @param index
      * @param element
      */
-    public void addElement(int index, int element){
+    public void addElement(int index, E element){
+        // 保证数组连续性
         if (index < 0 || index > size){
             throw new IllegalArgumentException("参数非法");
+        }
+
+        // 触发扩容
+        if (size == data.length){
+            resize();
         }
 
         for (int i = size; i > index; i--){
@@ -41,7 +49,7 @@ public class Array {
      * @param element
      * @return
      */
-    public boolean addLast(int element){
+    public boolean addLast(E element){
         addElement(size, element);
         return true;
     }
@@ -51,7 +59,7 @@ public class Array {
      * @param element
      * @return
      */
-    public boolean addFirst(int element){
+    public boolean addFirst(E element){
         addElement(0, element);
         return true;
     }
@@ -59,9 +67,9 @@ public class Array {
     /**
      * 删除指定索引位置的元素
      * @param index
-     * @return
+     * @return 返回删除元素
      */
-    public boolean remove(int index){
+    public E remove(int index){
         if (index < 0 || index > size){
             throw new IllegalArgumentException("参数非法");
         }
@@ -70,38 +78,53 @@ public class Array {
             throw new IllegalArgumentException("Array is Empty");
         }
 
+        E element = data[index];
+
         for (int i = index; i < size-1; i++){
             data[i] = data[i + 1];
         }
-
         size--;
+        return element;
+    }
+
+    /**
+     * 删除指定元素
+     * @param element
+     * @return
+     */
+    public boolean removeElement(E element){
+        int index = find(element);
+        if (index == -1){
+            return false;
+        }
+        remove(index);
         return true;
     }
 
     /**
      * 删除末尾元素
-     * @return
+     * @return 返回删除元素
      */
-    public int removeLast(){
+    public E removeLast(){
         this.remove(size-1);
         return data[size-1];
     }
 
     /**
      * 删除首位元素
-     * @return
+     * @return 返回删除元素
      */
-    public int removeFirst(){
+    public E removeFirst(){
         this.remove(0);
         return data[0];
     }
 
     /**
-     * 查找元素
+     * 查找指定元素
      * @param element
-     * @return 返回元素索引
+     * @return 返回元素索引位置
      */
-    public int find(int element){
+    public int find(E element){
         for (int i = 0; i < size; i++){
             if (data[i] == element){
                 return i;
@@ -111,12 +134,12 @@ public class Array {
     }
 
     /**
-     * 修改元素
+     * 修改指定索引位置元素
      * @param index
      * @param element
      * @return
      */
-    public boolean setElment(int index, int element){
+    public boolean setElement(int index, E element){
         if (index < 0 || index > size){
             throw new IllegalArgumentException("参数非法");
         }
@@ -128,7 +151,7 @@ public class Array {
      * 2倍扩容
      */
     public void resize(){
-        int[] newData = new int[data.length * 2];
+        E[] newData = (E[]) new Objects[data.length * 2];
         for (int i = 0; i < size; i++){
             newData[i] = data[i];
         }
@@ -167,7 +190,7 @@ public class Array {
 
     public static void main(String[] args) {
 
-        Array array = new Array(10);
+        Array<Integer> array = new Array<>(10);
         System.out.println(array);
 
         for (int i = 0; i < 5; i++){
@@ -195,8 +218,10 @@ public class Array {
         array.addLast(333);
         array.addLast(444);
         array.addLast(555);
+        System.out.println(array);
         array.addLast(666);
         array.addLast(777);
+        System.out.println(array);
     }
 
 }
