@@ -1,7 +1,5 @@
 package com.ysdrzp.array;
 
-import java.util.Objects;
-
 /**
  * 二次封装数组
  * @author 翟志鹏
