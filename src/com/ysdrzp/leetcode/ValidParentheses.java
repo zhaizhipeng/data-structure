@@ -1,6 +1,6 @@
 package com.ysdrzp.leetcode;
 
-import com.ysdrzp.stack.ArrayStack;
+import java.util.Stack;
 
 /**
  * 有效的括号-(LeetCode-20)
@@ -9,7 +9,7 @@ import com.ysdrzp.stack.ArrayStack;
 public class ValidParentheses {
 
     public boolean isValid(String str){
-        ArrayStack<Character> arrayStack = new ArrayStack<>(10);
+        Stack<Character> arrayStack = new Stack<>();
         for (int i = 0; i < str.length(); i++) {
 
             char c = str.charAt(i);
@@ -17,6 +17,11 @@ public class ValidParentheses {
             if ('(' == c || '{' == c || '[' == c) {
                 arrayStack.push(c);
                 continue;
+            }
+
+            // 特殊判断
+            if (arrayStack.isEmpty()){
+                return false;
             }
 
             if (')' == c && arrayStack.pop() != '('){
@@ -39,6 +44,6 @@ public class ValidParentheses {
     public static void main(String[] args) {
         System.out.println(new ValidParentheses().isValid("{}"));
         System.out.println(new ValidParentheses().isValid("{()}"));
-        System.out.println(new ValidParentheses().isValid("{}(]"));
+        System.out.println(new ValidParentheses().isValid("{}()]"));
     }
 }
