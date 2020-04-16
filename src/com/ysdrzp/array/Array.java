@@ -98,6 +98,22 @@ public class Array<E> {
     }
 
     /**
+     * 获取末尾元素
+     * @return
+     */
+    public E getLast(){
+        return get(size - 1);
+    }
+
+    /**
+     * 获取首位元素
+     * @return
+     */
+    public E getFirst(){
+        return get(0);
+    }
+
+    /**
      * 修改指定索引位置元素
      * @param index
      * @param element
