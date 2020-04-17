@@ -6,8 +6,14 @@ package com.ysdrzp.array;
  */
 public class Array<E> {
 
+    /**
+     * 数组中的元素个数： size可以理解为数组中第一个没有元素的位置索引大小
+     */
     private int size;
 
+    /**
+     * 数据
+     */
     private E[] data;
 
     public Array(int capacity){
@@ -44,12 +50,23 @@ public class Array<E> {
     }
 
     /**
+     * 将数组空间的容量变成 newCapacity 大小
+     */
+    public void resize(int newCapacity){
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++){
+            newData[i] = data[i];
+        }
+        data = newData;
+    }
+
+    /**
      * 指定索引位置插入元素
      * @param index
      * @param element
      */
     public void addElement(int index, E element){
-        // 保证数组连续性
+
         if (index < 0 || index > size){
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
         }
@@ -92,6 +109,7 @@ public class Array<E> {
     public E get(int index){
         if(index < 0 || index >= size)
             throw new IllegalArgumentException("Get failed. Index is illegal.");
+
         return data[index];
     }
 
@@ -118,9 +136,10 @@ public class Array<E> {
      * @return
      */
     public void set(int index, E element){
-        if (index < 0 || index > size){
+        if (index < 0 || index >= size){
             throw new IllegalArgumentException("Set failed. Index is illegal.");
         }
+
         data[index] = element;
     }
 
@@ -157,7 +176,7 @@ public class Array<E> {
      * @return 返回删除元素
      */
     public E remove(int index){
-        if (index < 0 || index > size){
+        if (index < 0 || index >= size){
             throw new IllegalArgumentException("Remove failed. Index is illegal.");
         }
 
@@ -207,17 +226,6 @@ public class Array<E> {
         }
     }
 
-    /**
-     * 将数组空间的容量变成 newCapacity 大小
-     */
-    public void resize(int newCapacity){
-        E[] newData = (E[]) new Object[newCapacity];
-        for (int i = 0; i < size; i++){
-            newData[i] = data[i];
-        }
-        data = newData;
-    }
-
     @Override
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
@@ -231,33 +239,6 @@ public class Array<E> {
         }
         stringBuilder.append("]");
         return stringBuilder.toString();
-    }
-
-    public static void main(String[] args) {
-        Array<Integer> arr = new Array<>();
-        for(int i = 0 ; i < 10 ; i ++)
-            arr.addLast(i);
-        System.out.println(arr);
-
-        arr.addElement(1, 100);
-        System.out.println(arr);
-
-        arr.addFirst(-1);
-        System.out.println(arr);
-
-        arr.remove(2);
-        System.out.println(arr);
-
-        arr.removeElement(4);
-        System.out.println(arr);
-
-        arr.removeFirst();
-        System.out.println(arr);
-
-        for(int i = 0 ; i < 4 ; i ++){
-            arr.removeFirst();
-            System.out.println(arr);
-        }
     }
 
 }
