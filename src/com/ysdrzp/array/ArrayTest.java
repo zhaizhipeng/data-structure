@@ -8,8 +8,8 @@ public class ArrayTest {
             arr.addLast(i);
         System.out.println(arr);
 
-        arr.set(arr.size()-1, 2);
-        System.out.println(arr);
+        //arr.set(arr.size()-1, 2);
+        //System.out.println(arr);
 
         arr.remove(10);
 

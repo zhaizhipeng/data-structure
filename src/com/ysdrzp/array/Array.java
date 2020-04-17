@@ -176,12 +176,13 @@ public class Array<E> {
      * @return 返回删除元素
      */
     public E remove(int index){
-        if (index < 0 || index >= size){
-            throw new IllegalArgumentException("Remove failed. Index is illegal.");
-        }
 
         if (size == 0){
             throw new IllegalArgumentException("Array is Empty");
+        }
+
+        if (index < 0 || index >= size){
+            throw new IllegalArgumentException("Remove failed. Index is illegal.");
         }
 
         E element = data[index];
