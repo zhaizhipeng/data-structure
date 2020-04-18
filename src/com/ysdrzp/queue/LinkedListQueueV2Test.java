@@ -1,6 +1,6 @@
 package com.ysdrzp.queue;
 
-public class Main {
+public class LinkedListQueueV2Test {
 
     public static void main(String[] args) {
         LinkedListQueueV2<Integer> queue = new LinkedListQueueV2<>();
