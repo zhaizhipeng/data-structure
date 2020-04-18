@@ -1,6 +1,6 @@
 package com.ysdrzp.queue;
 
-public class ArrayQueueTest {
+public class LoopQueueTest {
 
     public static void main(String[] args) {
         ArrayQueue arrayQueue = new ArrayQueue();
@@ -17,4 +17,5 @@ public class ArrayQueueTest {
             System.out.println(arrayQueue);
         }
     }
+
 }
