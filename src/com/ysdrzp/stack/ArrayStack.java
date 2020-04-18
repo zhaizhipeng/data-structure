@@ -50,7 +50,8 @@ public class ArrayStack<E> implements Stack<E> {
     @Override
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format("capacity = %d [", array.getCapacity()));
+        stringBuilder.append(String.format("capacity = %d\n", array.getCapacity()));
+        stringBuilder.append("Stack [");
         for (int i = 0; i < array.size(); i++){
             stringBuilder.append(i);
             if (i != array.size() - 1)
@@ -60,11 +61,4 @@ public class ArrayStack<E> implements Stack<E> {
         return stringBuilder.toString();
     }
 
-    public static void main(String[] args) {
-        ArrayStack<Integer> arrayStack = new ArrayStack<>(10);
-        for (int i = 0; i < 11; i++){
-            arrayStack.push(i);
-        }
-        System.out.println(arrayStack);
-    }
 }

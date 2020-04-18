@@ -231,7 +231,7 @@ public class Array<E> {
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format("size = %d,capacity = %d\n", size, data.length));
-        stringBuilder.append("[");
+        stringBuilder.append("Array [");
         for (int i = 0; i < size; i++){
             stringBuilder.append(data[i]);
             if (i != size - 1){

@@ -11,7 +11,7 @@ public class ArrayTest {
         //arr.set(arr.size()-1, 2);
         //System.out.println(arr);
 
-        arr.remove(10);
+        //arr.remove(10);
 
         arr.addElement(1, 100);
         System.out.println(arr);
