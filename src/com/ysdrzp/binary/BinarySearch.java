@@ -1,7 +1,5 @@
 package com.ysdrzp.binary;
 
-import com.ysdrzp.array.Array;
-
 /**
  * 二分查找
  */
